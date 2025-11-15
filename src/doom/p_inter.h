@@ -25,6 +25,10 @@
 
 boolean	P_GivePower(player_t*, int);
 
+boolean P_GiveBody(player_t * player, int num);
+
+boolean P_GiveAmmo(player_t* player, ammotype_t ammo, int num, boolean dropped);
+
 
 
 #endif

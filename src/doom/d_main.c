@@ -19,7 +19,6 @@
 //	and call the startup functions.
 //
 
-
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -85,6 +84,9 @@
 #include "apdoom.h"
 #include "deh_misc.h"
 #include "ap_notif.h"
+
+#include "p_inter.h"
+#include "w_merge.h"
 
 //
 // D-DoomLoop()

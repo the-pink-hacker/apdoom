@@ -4,6 +4,7 @@
 #include "doomdef.h"
 #include "i_video.h"
 #include <stdlib.h>
+#include "doom/hu_stuff.h"
 
 
 #define HU_APMSGTIMEOUT	    (5*TICRATE)

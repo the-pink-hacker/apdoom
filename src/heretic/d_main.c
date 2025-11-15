@@ -55,6 +55,8 @@
 #include "ap_msg.h"
 #include "ap_notif.h"
 
+#include "w_merge.h"
+
 #define CT_KEY_GREEN    'g'
 #define CT_KEY_YELLOW   'y'
 #define CT_KEY_RED      'r'

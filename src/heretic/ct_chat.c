@@ -31,6 +31,8 @@
 #include "s_sound.h"
 #include "v_video.h"
 
+#include "archipelago/apdoom.h"
+
 #define QUEUESIZE		128
 #define MESSAGESIZE	128
 #define MESSAGELEN 	265

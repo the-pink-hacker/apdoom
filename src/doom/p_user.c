@@ -32,6 +32,7 @@
 
 #include "s_sound.h" // [NS] Jump sound etc.
 
+#include "archipelago/apdoom.h"
 
 // Index of the special effects (INVUL inverse) map.
 #define INVERSECOLORMAP		32

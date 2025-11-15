@@ -29,6 +29,8 @@
 //
 // GAME
 //
+void G_DoSaveGame (void);
+
 void G_DeathMatchSpawnPlayer (int playernum);
 
 void G_InitNew (skill_t skill, int episode, int map);

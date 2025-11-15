@@ -40,6 +40,8 @@
 #include "crispy.h"
 #include "apdoom.h"
 
+#include "heretic/level_select.h"
+
 // Macros
 
 #define LEFT_DIR 0

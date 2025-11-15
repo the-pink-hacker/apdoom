@@ -27,6 +27,8 @@
 #include "doomkeys.h"
 #include "apdoom.h"
 
+#include "heretic/level_select.h"
+
 static int finalestage;                // 0 = text, 1 = art screen
 static int finalecount;
 

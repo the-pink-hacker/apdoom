@@ -26,6 +26,7 @@
 #include "am_map.h"
 #include "apdoom.h"
 
+void G_LevelSelect(void);
 
 #define BONUSADD 6
 

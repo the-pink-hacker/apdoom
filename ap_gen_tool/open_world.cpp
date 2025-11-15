@@ -1,3 +1,6 @@
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wformat"
+
 #include <onut/onut.h>
 #include <onut/Settings.h>
 #include <onut/Renderer.h>
@@ -2296,3 +2299,4 @@ void renderUI()
 void postRender()
 {
 }
+#pragma clang diagnostic pop

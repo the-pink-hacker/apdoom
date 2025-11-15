@@ -28,5 +28,6 @@ void DrawLevelSelect();
 void ShowLevelSelect();
 void TickLevelSelect();
 
+void play_level(int ep, int lvl);
 
 #endif

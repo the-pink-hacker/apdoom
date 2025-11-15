@@ -68,6 +68,8 @@ void G_DoSaveGame(void);
 void D_PageTicker(void);
 void D_AdvanceDemo(void);
 
+void G_LevelSelect(void);
+
 static boolean InventoryMoveLeft();
 static boolean InventoryMoveRight();
 

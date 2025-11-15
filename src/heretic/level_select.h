@@ -28,5 +28,7 @@ void DrawLevelSelect();
 void ShowLevelSelect();
 void TickLevelSelect();
 
+void G_DoSaveGame(void);
+void play_level(int ep, int lvl);
 
 #endif
