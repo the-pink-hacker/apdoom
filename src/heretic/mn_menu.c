@@ -669,7 +669,7 @@ static void InitFonts(void)
                 ptr = (byte*)q + q->columnofs[col];
                 while (*ptr != 0xFF)
                 {
-                    post = ptr;
+                    post = (post_t *)ptr;
                     ptr += 3;
                     for (int row = 0; row < post->length; ++row, ++ptr)
                     {
