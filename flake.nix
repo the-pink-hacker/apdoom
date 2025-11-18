@@ -22,21 +22,30 @@
   in {
     packages =
       lib.mapAttrs (system: pkgs: {
-        crispy-apdoom = pkgs.clangStdenv.mkDerivation (finalAttrs: {
+        crispy-apdoom = pkgs.clangStdenv.mkDerivation (finalAttrs: let
+          SDL2_static = pkgs.SDL2.overrideAttrs (old: {
+            dontDisableStatic = true;
+          });
+          enableWayland = true;
+          enableTruecolor = false;
+        in {
           pname = "crispy-apdoom";
           version = "1.2.0";
           src = pkgs.fetchFromGitHub {
-            owner = "Daivuk";
+            owner = "the-pink-hacker";
             repo = "apdoom";
-            tag = finalAttrs.version;
-            hash = "sha256-uaMTXpuAUPkGpO0Bb2inb03ERQa6Tj6xed2Wh9v1XZw=";
+            rev = "acc91da06b08e6b9650ada1ff2f13f4ae9169a89";
+            fetchSubmodules = true;
+            hash = "sha256-gHQ3bxKGHIqb5aniy+LeovNu5/IBAWQn9VUQ1/tt14M=";
           };
 
           postPatch = ''
             for script in $(grep -lr '^#!/usr/bin/env python3$'); do patchShebangs $script; done
           '';
 
-          #configureFlags = lib.optional enableTruecolor [ "--enable-truecolor" ];
+          configureFlags = lib.optional enableTruecolor [
+            "--enable-truecolor"
+          ];
 
           nativeBuildInputs = with pkgs; [
             #autoreconfHook
@@ -45,17 +54,28 @@
             cmake
           ];
 
-          buildInputs = with pkgs; [
+          buildInputs = (with pkgs; [
             libpng
             libsamplerate
-            SDL2
+            # TODO: Fix cmake SDL2-static error
+            SDL2_static
+            SDL2_static.dev
             SDL2_mixer
             SDL2_net
             zlib
             openssl
-            libGLU
+            libGL
             curl
-          ];
+            qt5Full
+            xorg.xinput
+            libxkbcommon
+          ]) ++ lib.optional enableWayland (with pkgs; [
+            wayland
+            wayland-scanner
+            wayland-protocols
+            egl-wayland
+            wayland-utils
+          ]);
 
           enableParallelBuilding = true;
 
@@ -77,11 +97,12 @@
     formatter = lib.mapAttrs (_: pkgs: pkgs.alejandra) pkgsFor;
     devShells =
       lib.mapAttrs (system: pkgs: {
-        default = pkgs.mkShell.override {
+        default =
+          pkgs.mkShell.override {
             stdenv = pkgs.clangStdenv;
-        } {
-          inputsFrom = [self.packages.${system}.crispy-apdoom];
-        };
+          } {
+            inputsFrom = [self.packages.${system}.crispy-apdoom];
+          };
       })
       pkgsFor;
     overlays.default = final: prev: {inherit (self.packages.${prev.ssytem}) crispy-apdoom;};
